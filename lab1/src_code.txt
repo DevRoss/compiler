@@ -1,0 +1,16 @@
+# 这个是注释
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+# Created by Ross on 19-4-12
+
+
+a := 100
+b := 10
+if (a>b) {
+    # do something
+    a:=b
+}
+
+while(a>0){
+    a := a-1
+}
