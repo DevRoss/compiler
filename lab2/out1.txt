@@ -1,0 +1,30 @@
+ID a
+:=
+CONSTANT 100
+ID b
+:=
+CONSTANT 10
+if
+(
+ID a
+>
+ID b
+)
+{
+ID a
+:=
+ID b
+}
+while
+(
+ID a
+>
+CONSTANT 0
+)
+{
+ID a
+:=
+ID a
+-
+CONSTANT 1
+}
