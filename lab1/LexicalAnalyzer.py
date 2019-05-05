@@ -135,6 +135,6 @@ class LexicalAnalyzer:
 
 if __name__ == '__main__':
     src = 'src_code.txt'
-    out = 'out.txt'
+    out = 'out1.txt'
     analyzer = LexicalAnalyzer(src, out)
     analyzer.parse()
