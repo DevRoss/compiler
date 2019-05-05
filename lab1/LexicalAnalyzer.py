@@ -21,7 +21,6 @@ class LexicalAnalyzer:
     def get_char(self):
         if self.is_end:
             return False
-
         self.ch = self.src_code[self.p]
         self.token += self.ch
         self.p += 1
@@ -43,31 +42,31 @@ class LexicalAnalyzer:
             self.get_char()
         self.retract()
         if self.token in self.KEYWORDS:
-            self.out.write(self.token + '\n')
+            self.out.write(self.token + ' ' + str(self.line_p) + '\n')
         else:
-            self.out.write('ID ' + self.token + '\n')
+            self.out.write('ID ' + self.token + ' ' + str(self.line_p) + '\n')
 
     def digit(self):
         while self.ch.isdigit() and self.get_char():
             pass
         self.retract()
-        self.out.write('CONSTANT ' + self.token + '\n')
+        self.out.write('CONSTANT ' + self.token + ' ' + str(self.line_p) + '\n')
 
     def one(self):
-        self.out.write(self.token + '\n')
+        self.out.write(self.token + ' ' + str(self.line_p) + '\n')
 
     def two(self):
         first_char = self.ch
         if self.get_char() in self.TWO_SIGNS[first_char]:
-            self.out.write(self.token + '\n')
+            self.out.write(self.token + ' ' + str(self.line_p) + '\n')
         else:
             self.retract()
-            self.out.write(self.token + '\n')
+            self.out.write(self.token + ' ' + str(self.line_p) + '\n')
 
     def strict_two(self):
         first_char = self.ch
         if self.get_char() in self.STRICT_TWO_SIGNS[first_char]:
-            self.out.write(self.token + '\n')
+            self.out.write(self.token + ' ' + str(self.line_p) + '\n')
         else:
             print('ERROR')
             raise Exception('Lexical Error.')
@@ -95,6 +94,7 @@ class LexicalAnalyzer:
         self.token = ''  # 当前token
         self.p = 0  # 字符指针
         self.ch = ''  # 当前字
+        self.line_p = 1
         with open(src_file, 'r', encoding='utf-8') as fin:
             self.src_code = fin.read().replace('\t', '')
         self.out = open(out_file, 'w', encoding='utf-8')
@@ -119,7 +119,10 @@ class LexicalAnalyzer:
                     case = 'strict_two'
                 elif self.ch == '#':
                     case = 'annotation'
-                elif self.ch == ' ' or self.ch == '\n':
+                elif self.ch == ' ':
+                    continue
+                elif self.ch == '\n':
+                    self.line_p += 1
                     continue
                 else:
                     print("ERROR")
