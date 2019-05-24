@@ -1,0 +1,36 @@
+ID a 7
+:= 7
+CONSTANT 100 7
+ID b 8
+:= 8
+CONSTANT 10 8
+if 9
+( 9
+ID a 9
+> 9
+ID b 9
+) 9
+{ 9
+ID a 11
+:= 11
+ID b 11
+} 12
+while 14
+( 14
+ID a 14
+> 14
+CONSTANT 0 14
+) 14
+{ 14
+ID a 15
+:= 15
+( 15
+ID a 15
+- 15
+CONSTANT 1 15
+) 15
+* 15
+CONSTANT 3 15
+- 15
+CONSTANT 1 15
+} 16
