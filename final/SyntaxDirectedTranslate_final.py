@@ -215,6 +215,7 @@ class SyntaxDirectedTranslate:
             # print('tmpT{}:=tmpT{}'.format(i, i - 1) + op + tv2)
             self.output.append(('tmpT{}'.format(i), 'tmpT{}'.format(i - 1), tv2, ':='))
             # self.output.append('tmpT{}:=tmpT{}'.format(i, i - 1) + op + tv2)
+            self.output.append(('tmpT{}'.format(i), 'tmpT{}'.format(i - 1), tv2, op))
             i += 1
             self.p_output += 1
         return 'tmpT{}'.format(i - 1)
